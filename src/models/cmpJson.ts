@@ -51,6 +51,6 @@ schema.statics.updateById = async function updateById(
     });
   });
 };
-const CMP: ICMPModel = model<ICMPDocument, ICMPModel>("CMPs", schema);
+const CMP: ICMPModel = model<ICMPDocument, ICMPModel>("cmps", schema);
 export default CMP;
 export { ICMP, ICMPModel };

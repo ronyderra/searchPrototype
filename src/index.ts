@@ -3,6 +3,7 @@ import cors from "cors";
 import { config } from "dotenv";
 import http from "http";
 import router from "./routes/routes";
+import mongoose from "mongoose";
 config();
 
 const port = process.env.PORT || 3030;
@@ -25,3 +26,10 @@ server.listen(port, async () => {
 });
 
 const options: any = { useNewUrlParser: true, useUnifiedTopology: true };
+mongoose.set("strictQuery", true);
+mongoose.connect(MongoUrl, options);
+const connection = mongoose.connection;
+connection.on("error", (err) => console.error("connection error: ", err));
+connection.once("open", () => {
+  console.log("connected to: ", connection.name);
+});
