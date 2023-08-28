@@ -2,7 +2,7 @@ import { Document, Model } from "mongoose";
 import { ObjectId } from "mongodb";
 
 export interface ICMP {
-  cmpId: string;
+  cmpId: number;
   advertiserId: number;
   targetLink: string;
   totalCap: number;
@@ -11,7 +11,7 @@ export interface ICMP {
 }
 
 export interface IDistribution {
-  arId: string;
+  arId: number;
   affiliateId: number;
   rules: IRules;
 }
@@ -30,5 +30,5 @@ export interface ICMPDocument extends ICMP, Document {
 }
 
 export interface ICMPModel extends Model<ICMPDocument> {
-  getByCmpIdAndArId(cmpId: string, arId: string): Promise<ICMPDocument>;
+  getByCmpIdAndArId(cmpId: number, arId: number): Promise<ICMPDocument>;
 }

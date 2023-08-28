@@ -23,11 +23,11 @@ app.use("/", router);
 
 const server = http.createServer(app);
 server.listen(port, async () => {
-  console.log(`Server runs on port ${port}`);
-  const resp = elegantPair(1001, 2);
-  console.log(resp);
-  const resp2 = elegantUnpair(resp);
-  console.log(resp2);
+  // console.log(`Server runs on port ${port}`);
+  // const resp = elegantPair(1001, 2);
+  // console.log(resp);
+  // const resp2 = elegantUnpair(resp);
+  // console.log(resp2);
 });
 
 const options: any = { useNewUrlParser: true, useUnifiedTopology: true };

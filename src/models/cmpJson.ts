@@ -13,13 +13,13 @@ const RulesSchema = new Schema({
 });
 
 const DistributionSchema = new Schema({
-  arId: String,
+  arId: Number,
   affiliateId: Number,
   rules: RulesSchema,
 });
 
 const CMPSchema = new Schema({
-  cmpId: String,
+  cmpId: Number,
   advertiserId: Number,
   targetLink: String,
   totalCap: Number,
