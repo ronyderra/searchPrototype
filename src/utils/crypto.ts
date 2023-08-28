@@ -13,7 +13,6 @@ export function encrypt(cmpId: string, ts: string) {
   return encryptedData;
 }
 
-// Function to decrypt and split the combined UUIDs
 export function decrypt(encryptedData: string) {
   const decipher = crypto.createDecipheriv(algorithm, Securitykey, initVector);
   let decryptedData = decipher.update(encryptedData, "hex", "utf-8");

@@ -1,12 +1,12 @@
 {
-  "cmpId": "1ad1fccc-d279-46a0-8980-1d91afd6ba67",
+  "cmpId": 1,
   "advertiserId": 47,
   "targetLink": "https://lolo.asd.wtf?id=2435734658345634562356&channel=CHANNEL&clkid=CLICKID&q=whiten+toothpastes",
   "totalCap": 3000,
   "active": true,
   "distribution": [
     {
-      "arId": "af7c1fe6-d669-414e-b066-e9733f0de7a8",
+      "arId": "1693219517",
       "affiliateId": 7,
       "rules": {
         "device": ["deskstop"],
@@ -18,7 +18,7 @@
       }
     },
     {
-      "arId": "08c71152-c552-42e7-b094-f510ff44e9cb",
+      "arId": "1693219542",
       "affiliateId": 7,
       "rules": {
         "device": ["mobile"],
@@ -30,7 +30,7 @@
       }
     },
     {
-      "arId": "c558a80a-f319-4c10-95d4-4282ef745b4b",
+      "arId": "1693219549",
       "affiliateId": 35,
       "rules": {
         "browser": ["*"],
