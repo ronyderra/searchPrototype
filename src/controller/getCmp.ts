@@ -5,7 +5,10 @@ import { decrypt } from "../utils/crypto";
 export const getCmp = async (req: any, res: any) => {
   try {
     const { id } = req.query;
+    console.log(id);
+    
     const dataStr = decrypt(id);
+    console.log(dataStr);
     const cmpId = dataStr.split("-")[0];
     const arId = dataStr.split("-")[1];
     const result: ICMPDocument = await CMP.getByCmpIdAndArId(cmpId, arId);

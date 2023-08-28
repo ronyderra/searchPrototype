@@ -9,14 +9,23 @@ export function encrypt(cmpId: string, ts: string) {
   const cipher = crypto.createCipheriv(algorithm, Securitykey, initVector);
   let encryptedData = cipher.update(message, "utf-8", "hex");
   encryptedData += cipher.final("hex");
-  console.log("Encrypted message: " + encryptedData);
+
+  
   return encryptedData;
 }
 
 export function decrypt(encryptedData: string) {
-  const decipher = crypto.createDecipheriv(algorithm, Securitykey, initVector);
-  let decryptedData = decipher.update(encryptedData, "hex", "utf-8");
-  decryptedData += decipher.final("utf8");
-  console.log("Decrypted message: " + decryptedData);
-  return decryptedData;
+  try {
+    const decipher = crypto.createDecipheriv(
+      algorithm,
+      Securitykey,
+      initVector
+    );
+    let decryptedData = decipher.update(encryptedData, "hex", "utf-8");
+    decryptedData += decipher.final("utf8");
+
+    return decryptedData;
+  } catch (error) {
+    console.log(error.message);
+  }
 }
