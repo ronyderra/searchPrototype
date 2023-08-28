@@ -1,7 +1,12 @@
 import { ObjectId } from "bson";
 import { model, Schema } from "mongoose";
 import { CustomDocumentBuild } from "../mongodb/documentDefaults";
-import { ICMPDocument, ICMPModel, ICMP } from "./interfaces/cmpJson";
+import {
+  ICMPDocument,
+  ICMPModel,
+  ICMP,
+  IDistribution,
+} from "./interfaces/cmpJson";
 
 const RulesSchema = new Schema({
   device: [String],
@@ -27,7 +32,7 @@ const CMPSchema = new Schema({
   distribution: [DistributionSchema],
 });
 
-export const schema = CustomDocumentBuild(CMPSchema, "CMPs");
+export const schema = CustomDocumentBuild(CMPSchema, "cmps");
 
 schema.statics.createNew = async function createNew(newDocument: ICMP) {
   try {
@@ -50,6 +55,23 @@ schema.statics.updateById = async function updateById(
       else res(r);
     });
   });
+};
+schema.statics.getByCmpIdAndArId = async function getById(
+  cmpId: string,
+  arId: string
+) {
+  try {
+    const query = this.aggregate([
+      { $match: { cmpId: cmpId } },
+      { $unwind: "$distribution" },
+      { $match: { "distribution.arId": arId } },
+      { $replaceRoot: { newRoot: "$distribution" } },
+    ]);
+    return query.exec().then((doc: any) => doc);
+  } catch (error: any) {
+    console.log(error.message);
+    return undefined;
+  }
 };
 const CMP: ICMPModel = model<ICMPDocument, ICMPModel>("cmps", schema);
 export default CMP;

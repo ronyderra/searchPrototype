@@ -30,5 +30,5 @@ export interface ICMPDocument extends ICMP, Document {
 }
 
 export interface ICMPModel extends Model<ICMPDocument> {
-  findCmp(username: string, password: string): Promise<ICMPDocument>;
+  getByCmpIdAndArId(cmpId: string, arId: string): Promise<ICMPDocument>;
 }
