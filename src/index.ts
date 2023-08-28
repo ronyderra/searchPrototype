@@ -3,8 +3,7 @@ import cors from "cors";
 import { config } from "dotenv";
 import http from "http";
 import router from "./routes/routes";
-import crypto, { Cipher, Decipher } from "crypto";
-import { splitCombinedUUIDs, combineUUIDs } from "./utils/crypto";
+import { combineUUIDs } from "./utils/crypto";
 config();
 
 interface EncryptedData {
@@ -30,23 +29,11 @@ const server = http.createServer(app);
 server.listen(port, async () => {
   console.log(`Server runs on port ${port}`);
   // Example usage
-  const uuid1: string = "123e4567-e89b-12d3-a456-426655440000";
-  const uuid2: string = "987e6543-e21b-43d2-a458-327655441111";
+  const uuid1: string = "1ad1fccc-d279-46a0-8980-1d91afd6ba67";
+  const uuid2: string = "af7c1fe6-d669-414e-b066-e9733f0de7a8";
 
   // Combine and encrypt UUIDs
-  const { iv: generatedIv, encryptedData }: EncryptedData = combineUUIDs(
-    uuid1,
-    uuid2
-  );
-  console.log(`Combined and encrypted: ${encryptedData}, IV: ${generatedIv}`);
-
-  // Decrypt and split UUIDs
-  const { uuid1: originalUUID1, uuid2: originalUUID2 } = splitCombinedUUIDs(
-    generatedIv,
-    encryptedData
-  );
-  console.log(`Decrypted and split UUID1: ${originalUUID1}`);
-  console.log(`Decrypted and split UUID2: ${originalUUID2}`);
+  combineUUIDs(uuid1, uuid2);
 });
 
 const options: any = { useNewUrlParser: true, useUnifiedTopology: true };
