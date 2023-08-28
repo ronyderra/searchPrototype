@@ -7,16 +7,16 @@ export interface ICMP {
   targetLink: string;
   totalCap: number;
   active: boolean;
-  distribution: distribution[];
+  distribution: IDistribution[];
 }
 
-export interface distribution {
+export interface IDistribution {
   arId: string;
   affiliateId: number;
-  rules: rules;
+  rules: IRules;
 }
 
-export interface rules {
+export interface IRules {
   device: string[];
   geo: string[];
   os: string[];

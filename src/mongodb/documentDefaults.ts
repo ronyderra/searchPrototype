@@ -12,15 +12,7 @@ export const CustomDocumentBuild = (custDoc: any, collection?: string) => {
     collation: { locale: "he", strength: 1 },
     collection,
   });
-  schema.statics.createNew = async function createNew(newDocument: any) {
-    try {
-      console.log({ newDocument });
-      return new this(newDocument).save();
-    } catch (error: any) {
-      console.log(error.message);
-      return undefined;
-    }
-  };
+
   schema.statics.getById = async function getById(_id: ObjectId) {
     try {
       const query = this.findOne({ _id });
@@ -39,19 +31,6 @@ export const CustomDocumentBuild = (custDoc: any, collection?: string) => {
       });
     });
   };
-  schema.statics.updateById = async function updateById(
-    _id: ObjectId,
-    updatedDocument: any
-  ) {
-    return new Promise((res, rej) => {
-      const query = this.findByIdAndUpdate({ _id }, updatedDocument, {
-        new: true,
-      });
-      query.exec().then((r: any, err: any) => {
-        if (err || !r) rej();
-        else res(r);
-      });
-    });
-  };
+
   return schema;
 };
