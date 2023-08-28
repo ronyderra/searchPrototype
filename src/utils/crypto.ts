@@ -1,31 +1,43 @@
-import crypto from "crypto";
+import bigInt from "big-integer";
+import { v4 as uuidv4 } from "uuid";
 
-const algorithm = "aes-256-cbc";
-const initVector = crypto.randomBytes(16);
-const Securitykey = crypto.randomBytes(32);
-
-export function encrypt(cmpId: string, ts: string) {
-  const message = `${cmpId}-${ts}`;
-  const cipher = crypto.createCipheriv(algorithm, Securitykey, initVector);
-  let encryptedData = cipher.update(message, "utf-8", "hex");
-  encryptedData += cipher.final("hex");
-
-  
-  return encryptedData;
+export function elegantPair(x, y) {
+  const p = x >= y ? x * x + x + y : y * y + x;
+  const hash = uuidv4();
+  return replaceLastSubstring(hash, p);
+}
+export function elegantUnpair(p: string) {
+  const z = Number(getLastSubstringAfterDash(p));
+  var sqrtz = Math.floor(Math.sqrt(z)),
+    sqz = sqrtz * sqrtz;
+  return z - sqz >= sqrtz ? [sqrtz, z - sqz - sqrtz] : [z - sqz, sqrtz];
 }
 
-export function decrypt(encryptedData: string) {
-  try {
-    const decipher = crypto.createDecipheriv(
-      algorithm,
-      Securitykey,
-      initVector
-    );
-    let decryptedData = decipher.update(encryptedData, "hex", "utf-8");
-    decryptedData += decipher.final("utf8");
+function replaceLastSubstring(originalString, newUserInput) {
+  // Find the position of the last dash in the string
+  const lastDashIndex = originalString.lastIndexOf("-");
 
-    return decryptedData;
-  } catch (error) {
-    console.log(error.message);
+  if (lastDashIndex === -1) {
+    return originalString; // No dash found, return the original string
   }
+
+  // Create a new string with the user input replacing the substring after the last dash
+  const newString =
+    originalString.substring(0, lastDashIndex + 1) + newUserInput;
+
+  return newString;
+}
+function getLastSubstringAfterDash(originalString) {
+  // Find the position of the last dash in the string
+  const lastDashIndex = originalString.lastIndexOf("-");
+
+  // If no dash found, return an empty string or null based on your requirement
+  if (lastDashIndex === -1) {
+    return "";
+  }
+
+  // Extract the substring after the last dash
+  const lastSubstring = originalString.substring(lastDashIndex + 1);
+
+  return lastSubstring;
 }
