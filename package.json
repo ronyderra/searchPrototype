@@ -21,6 +21,9 @@
     "snowflake-sdk": "^1.6.23",
     "ts-node": "^10.9.1",
     "typescript": "^5.1.6",
-    "uuid": "^9.0.0"
+    "useragent": "^2.3.0",
+    "uuid": "^9.0.0",
+    "mongodb": "^4.12.1",
+    "mongoose": "^6.7.5"
   }
 }
