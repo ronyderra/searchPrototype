@@ -1,11 +1,10 @@
-import express, { Request, Response } from "express";
-import { UserController } from "./validation";
+import express from "express";
 import { config } from "dotenv";
+import { getCmp } from "../controller/getCmp";
 config();
 
 const router = express.Router();
-const validate = new UserController();
 
-router.get("/");
+router.get("/", getCmp);
 
 export default router;
