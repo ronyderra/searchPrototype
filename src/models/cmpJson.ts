@@ -1,12 +1,7 @@
 import { ObjectId } from "bson";
 import { model, Schema } from "mongoose";
 import { CustomDocumentBuild } from "../mongodb/documentDefaults";
-import {
-  ICMPDocument,
-  ICMPModel,
-  ICMP,
-  IDistribution,
-} from "./interfaces/cmpJson";
+import { ICMPDocument, ICMPModel, ICMP } from "./interfaces/cmpJson";
 
 const RulesSchema = new Schema({
   device: [String],
