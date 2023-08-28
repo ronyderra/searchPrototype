@@ -57,7 +57,7 @@ schema.statics.getByCmpIdAndArId = async function getById(
 ) {
   try {
     const query = this.aggregate([
-      { $match: { cmpId: cmpId } },
+      { $match: { cmpId } },
       { $unwind: "$distribution" },
       { $match: { "distribution.arId": arId } },
       { $replaceRoot: { newRoot: "$distribution" } },
